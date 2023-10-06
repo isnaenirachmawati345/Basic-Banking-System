@@ -2,7 +2,7 @@ const saldo = 5000000;
 
 class BankAccount {
     constructor(initBalance) {//enkapsulasi
-        this.balance = initBalance;
+        this.balance = initBalance;//private
     }
 
    deposit() {
@@ -10,18 +10,17 @@ class BankAccount {
             const handleInput = () => {
                 const value = window.prompt(`Silahkan Masukkan Nominal Depositmu Disini`);
                 const valueDeposit = Number(value);
-
                 if (!isNaN(valueDeposit) && valueDeposit > 0) {
                     setTimeout(() => {
                         this.balance += valueDeposit;
                         resolve(valueDeposit);
-                    }, 100);
+                    }, 2000);
                 } else if (isNaN(valueDeposit)) {
                     const errorMessage = `Masukan harus angka`;
                     alert(errorMessage);
                     handleInput(); // Prompt ulang jika input tidak valid
-                } else if (valueDeposit == 0) {
-                    const errorMessage = `Angka yang dimasukan tidak boleh kurang dari nol`;
+                } else if (valueDeposit <= 0) {
+                    const errorMessage = `Angka yang dimasukan tidak boleh kurang dari sama dengan nol`;
                     alert(errorMessage);
                     handleInput(); // Prompt ulang jika input tidak valid
                 } else {
@@ -40,18 +39,17 @@ class BankAccount {
             const handleInput = () => {
                 const value = window.prompt(`Silahkan Masukkan Nominal Penarikanmu Disini`);
                 const valueWithdraw = Number(value);
-
                 if (!isNaN(valueWithdraw) && valueWithdraw > 0 && valueWithdraw <= this.balance) {
                     setTimeout(() => {
                         this.balance -= valueWithdraw;
                         resolve(valueWithdraw);
-                    }, 100);
+                    }, 2000);
                 }else if (isNaN(valueWithdraw)) {
                     const errorMessage = `Masukan harus angka`;
                     alert(errorMessage);
                     handleInput(); // Prompt ulang jika input tidak valid
-                } else if (valueWithdraw == 0) {
-                    const errorMessage = `Angka yang dimasukan tidak boleh kurang dari nol`;
+                } else if (valueWithdraw <= 0) {
+                    const errorMessage = `Angka yang dimasukan tidak boleh kurang dari sama dengan nol`;
                     alert(errorMessage);
                     handleInput(); // Prompt ulang jika input tidak valid
                 } else {
